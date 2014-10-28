@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+<!--        <property name="hibernate.connection.url">jdbc:mysql://ec2-50-19-213-178.compute-1.amazonaws.com:3306/sys_contable?zeroDateTimeBehavior=convertToNull</property>-->        
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/subinversa?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123</property>
+        <property name="hibernate.connection.pool_size">1</property>      
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="show_sql">true</property>
+        <!--        <property name="hbm2ddl.auto">update</property>-->
+        <!--        <property name="hbm2ddl.auto">create</property>-->
+    
+    <mapping class="subinversa.modelo.Tracto"></mapping>
+    <mapping class="subinversa.modelo.Usuario"></mapping>
+    <mapping class="subinversa.modelo.Destinos"></mapping>
+    <mapping class="subinversa.modelo.Preeleccion"></mapping>
+    <mapping class="subinversa.modelo.Subinversa"></mapping>
+    <mapping class="subinversa.modelo.Clientes"></mapping>
+    <mapping class="subinversa.modelo.Tipoempresa"></mapping>
+    <mapping class="subinversa.modelo.Publiserv"></mapping>
+   
+    </session-factory>
+</hibernate-configuration>
