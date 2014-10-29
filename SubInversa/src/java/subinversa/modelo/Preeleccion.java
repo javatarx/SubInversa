@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package subinversa.modelo;
 
 import java.io.Serializable;
@@ -39,14 +40,14 @@ public class Preeleccion implements Serializable {
     @Basic(optional = false)
     @Column(name = "tipoAceptacion")
     private String tipoAceptacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpre")
-    private Collection<Subinversa> subinversaCollection;
-    @JoinColumn(name = "idps", referencedColumnName = "idps")
-    @ManyToOne(optional = false)
-    private Publiserv idps;
     @JoinColumn(name = "idCli", referencedColumnName = "idCli")
     @ManyToOne(optional = false)
     private Clientes idCli;
+    @JoinColumn(name = "idps", referencedColumnName = "idps")
+    @ManyToOne(optional = false)
+    private Publiserv idps;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpre")
+    private Collection<Subinversa> subinversaCollection;
 
     public Preeleccion() {
     }
@@ -76,12 +77,12 @@ public class Preeleccion implements Serializable {
         this.tipoAceptacion = tipoAceptacion;
     }
 
-    public Collection<Subinversa> getSubinversaCollection() {
-        return subinversaCollection;
+    public Clientes getIdCli() {
+        return idCli;
     }
 
-    public void setSubinversaCollection(Collection<Subinversa> subinversaCollection) {
-        this.subinversaCollection = subinversaCollection;
+    public void setIdCli(Clientes idCli) {
+        this.idCli = idCli;
     }
 
     public Publiserv getIdps() {
@@ -92,12 +93,12 @@ public class Preeleccion implements Serializable {
         this.idps = idps;
     }
 
-    public Clientes getIdCli() {
-        return idCli;
+    public Collection<Subinversa> getSubinversaCollection() {
+        return subinversaCollection;
     }
 
-    public void setIdCli(Clientes idCli) {
-        this.idCli = idCli;
+    public void setSubinversaCollection(Collection<Subinversa> subinversaCollection) {
+        this.subinversaCollection = subinversaCollection;
     }
 
     @Override

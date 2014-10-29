@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package subinversa.control;
 
 import java.io.IOException;
@@ -13,13 +12,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import subinversa.modelo.Tipousuario;
+import subinversa.servicio.TipoUserServImpl;
+import subinversa.servicio.TipoUserServInterface;
 
 /**
  *
  * @author pacifi
  */
-@WebServlet(name = "sa", urlPatterns = {"/sa"})
-public class sa extends HttpServlet {
+@WebServlet(name = "TipoEmpControl", urlPatterns = {"/TipoEmpControl"})
+public class TipoUserControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +36,30 @@ public class sa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet sa</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet sa at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+        int opc = Integer.parseInt(request.getParameter("opc"));
+        TipoUserServInterface tipoEmpServ;
+
+        switch (opc) {
+            case 1: {
+                System.out.println("LLego al case 1 del Tipo Empresa");
+                tipoEmpServ = new TipoUserServImpl();
+                request.getSession().setAttribute("_listaTimpoEmpresa", tipoEmpServ.listaTipoUserTodo());
+                response.sendRedirect("jsp/modulos/tipEmp/mainTipoEmp.jsp");
+                break;
+            }
+            case 2: {
+                tipoEmpServ = new TipoUserServImpl();
+                Tipousuario to = new Tipousuario();
+                to.setDescripcion(request.getParameter("descripcion"));
+                to.setEstado(request.getParameter("estado"));
+                to.setNombre(request.getParameter("nombre"));
+                tipoEmpServ.insertTipoUserresa(to);
+
+                tipoEmpServ = new TipoUserServImpl();
+                request.getSession().setAttribute("_listaTimpoEmpresa", tipoEmpServ.listaTipoUserTodo());
+                response.sendRedirect("jsp/modulos/tipEmp/mainTipoEmp.jsp");
+                break;
+            }
         }
     }
 

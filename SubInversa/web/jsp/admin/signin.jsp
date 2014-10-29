@@ -30,6 +30,8 @@
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+        <script src="../resources/mystyle/js/jquery-1.9.1.js"></script>
+        <script src="../resources/mystyle/js/myjs.js"></script>
     </head>
     <body>
 	<!-- Fixed navbar -->
@@ -77,25 +79,28 @@
 							<p class="text-center text-muted">Lorem ipsum dolor sit amet, <a href="signup.html">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio. </p>
 							<hr>
 							
-							<form>
+                                                        <form  id="formLogin" action="javascript:validaxion()">
 								<div class="top-margin">
 									<label>Username/Email <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+                                                                        <input type="text"  name="usuario" id="usuario" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Password <span class="text-danger">*</span></label>
-									<input type="password" class="form-control">
+                                                                        <input type="password" name="clave" id="clave" class="form-control">
 								</div>
 
 								<hr>
 
 								<div class="row">
-									<div class="col-lg-8">
+<!--									<div class="col-lg-8">
 										<b><a href="">Forgot password?</a></b>
-									</div>
+									</div>-->
 									<div class="col-lg-4 text-right">
-										<!-- <button class="btn btn-action" type="submit">Sign in</button> -->
-                                                                                <a href="../frame/IndexFrameAdmin.jsp" class="btn btn-action">Sign in</a>
+                                                                            <input type="hidden" name="opc" id="opc" value="6" />
+                                                                            <input type="submit" value="Ingresar" />
+										 <!--<button class="btn btn-action" type="submit">Sign in</button>--> 
+                                                                                <!--<a href="../frame/IndexFrameAdmin.jsp" class="btn btn-action">Sign in</a>-->
+                                                                                <label style="color: red" id="msg"> </label>
 									</div>
 								</div>
 							</form>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package subinversa.servicio;
 
 import java.util.List;
@@ -15,20 +14,37 @@ import subinversa.modelo.Usuario;
  *
  * @author Magwi
  */
-public class UsuarioServImpl implements UsuarioServInterface{
+public class UsuarioServImpl implements UsuarioServInterface {
+
     UsuarioDaoInterface dao;
-    
-    public UsuarioServImpl(){
+
+    public UsuarioServImpl() {
         dao = new UsuarioDaoImpl();
     }
-    
+
     @Override
-    public List<Usuario> listaUsuarioTodo(){
+    public List<Usuario> listaUsuarioTodo() {
         return dao.getListAll();
     }
+
     @Override
-    public void insertUsuario(Usuario to){
+    public void insertUsuario(Usuario to) {
         dao.save(to);
     }
+
+    @Override
+    public Usuario validarUsuarioExiste(String usuario, String pass) {
+        return dao.validarUsuarioExiste(usuario, pass);
+    }
+
+    @Override
+    public Usuario validarUsuarioExiste(String usuario) {
+        return dao.validarUsuarioExiste(usuario);
+    }
     
+    @Override
+    public List<Usuario> validarUsuarioExisteList(String usuario){
+        return dao.validarUsuarioExisteList(usuario);
+    }
+
 }

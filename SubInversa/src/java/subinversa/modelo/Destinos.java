@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package subinversa.modelo;
 
 import java.io.Serializable;
@@ -41,9 +42,9 @@ public class Destinos implements Serializable {
     @Column(name = "estado")
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "iddest")
-    private Collection<Publiserv> publiservCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iddest")
     private Collection<Clientes> clientesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iddest")
+    private Collection<Publiserv> publiservCollection;
 
     public Destinos() {
     }
@@ -82,20 +83,20 @@ public class Destinos implements Serializable {
         this.estado = estado;
     }
 
-    public Collection<Publiserv> getPubliservCollection() {
-        return publiservCollection;
-    }
-
-    public void setPubliservCollection(Collection<Publiserv> publiservCollection) {
-        this.publiservCollection = publiservCollection;
-    }
-
     public Collection<Clientes> getClientesCollection() {
         return clientesCollection;
     }
 
     public void setClientesCollection(Collection<Clientes> clientesCollection) {
         this.clientesCollection = clientesCollection;
+    }
+
+    public Collection<Publiserv> getPubliservCollection() {
+        return publiservCollection;
+    }
+
+    public void setPubliservCollection(Collection<Publiserv> publiservCollection) {
+        this.publiservCollection = publiservCollection;
     }
 
     @Override

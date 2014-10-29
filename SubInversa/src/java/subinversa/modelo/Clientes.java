@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package subinversa.modelo;
 
 import java.io.Serializable;
@@ -57,16 +58,19 @@ public class Clientes implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCli")
-    private Collection<Publiserv> publiservCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCli")
-    private Collection<Preeleccion> preeleccionCollection;
+    @Basic(optional = false)
+    @Column(name = "pass")
+    private String pass;
+    @JoinColumn(name = "idus", referencedColumnName = "idus")
+    @ManyToOne(optional = false)
+    private Usuario idus;
     @JoinColumn(name = "iddest", referencedColumnName = "iddest")
     @ManyToOne(optional = false)
     private Destinos iddest;
-    @JoinColumn(name = "idtipemp", referencedColumnName = "idtipemp")
-    @ManyToOne(optional = false)
-    private Tipoempresa idtipemp;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCli")
+    private Collection<Preeleccion> preeleccionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCli")
+    private Collection<Publiserv> publiservCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCli")
     private Collection<Tracto> tractoCollection;
 
@@ -77,7 +81,7 @@ public class Clientes implements Serializable {
         this.idCli = idCli;
     }
 
-    public Clientes(Integer idCli, String ruc, String razonsocial, String direccion, String email, long telefono, long fax, String estado) {
+    public Clientes(Integer idCli, String ruc, String razonsocial, String direccion, String email, long telefono, long fax, String estado, String pass) {
         this.idCli = idCli;
         this.ruc = ruc;
         this.razonsocial = razonsocial;
@@ -86,6 +90,7 @@ public class Clientes implements Serializable {
         this.telefono = telefono;
         this.fax = fax;
         this.estado = estado;
+        this.pass = pass;
     }
 
     public Integer getIdCli() {
@@ -152,20 +157,20 @@ public class Clientes implements Serializable {
         this.estado = estado;
     }
 
-    public Collection<Publiserv> getPubliservCollection() {
-        return publiservCollection;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPubliservCollection(Collection<Publiserv> publiservCollection) {
-        this.publiservCollection = publiservCollection;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
-    public Collection<Preeleccion> getPreeleccionCollection() {
-        return preeleccionCollection;
+    public Usuario getIdus() {
+        return idus;
     }
 
-    public void setPreeleccionCollection(Collection<Preeleccion> preeleccionCollection) {
-        this.preeleccionCollection = preeleccionCollection;
+    public void setIdus(Usuario idus) {
+        this.idus = idus;
     }
 
     public Destinos getIddest() {
@@ -176,12 +181,20 @@ public class Clientes implements Serializable {
         this.iddest = iddest;
     }
 
-    public Tipoempresa getIdtipemp() {
-        return idtipemp;
+    public Collection<Preeleccion> getPreeleccionCollection() {
+        return preeleccionCollection;
     }
 
-    public void setIdtipemp(Tipoempresa idtipemp) {
-        this.idtipemp = idtipemp;
+    public void setPreeleccionCollection(Collection<Preeleccion> preeleccionCollection) {
+        this.preeleccionCollection = preeleccionCollection;
+    }
+
+    public Collection<Publiserv> getPubliservCollection() {
+        return publiservCollection;
+    }
+
+    public void setPubliservCollection(Collection<Publiserv> publiservCollection) {
+        this.publiservCollection = publiservCollection;
     }
 
     public Collection<Tracto> getTractoCollection() {

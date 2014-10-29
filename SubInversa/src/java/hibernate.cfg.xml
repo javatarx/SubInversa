@@ -14,14 +14,16 @@
         <!--        <property name="hbm2ddl.auto">update</property>-->
         <!--        <property name="hbm2ddl.auto">create</property>-->
     
-    <mapping class="subinversa.modelo.Tracto"></mapping>
-    <mapping class="subinversa.modelo.Usuario"></mapping>
     <mapping class="subinversa.modelo.Destinos"></mapping>
-    <mapping class="subinversa.modelo.Preeleccion"></mapping>
-    <mapping class="subinversa.modelo.Subinversa"></mapping>
-    <mapping class="subinversa.modelo.Clientes"></mapping>
-    <mapping class="subinversa.modelo.Tipoempresa"></mapping>
+    <mapping class="subinversa.modelo.Url"></mapping>
+    <mapping class="subinversa.modelo.Tipousuario"></mapping>
     <mapping class="subinversa.modelo.Publiserv"></mapping>
-   
+    <mapping class="subinversa.modelo.Usuario"></mapping>
+    <mapping class="subinversa.modelo.Preeleccion"></mapping>
+    <mapping class="subinversa.modelo.Clientes"></mapping>
+    <mapping class="subinversa.modelo.Tracto"></mapping>
+    <mapping class="subinversa.modelo.Subinversa"></mapping>
+    <mapping class="subinversa.modelo.Accesos"></mapping>
+    
     </session-factory>
 </hibernate-configuration>

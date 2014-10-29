@@ -6,15 +6,15 @@
 package subinversa.servicio;
 
 import java.util.List;
-import subinversa.modelo.Tipoempresa;
+import subinversa.modelo.Tipousuario;
 
 /**
  *
  * @author pacifi
  */
-public interface TipoEmpServInterface {
+public interface TipoUserServInterface {
     
-    public void insertTipoEmpresa(Tipoempresa to);
-    public List<Tipoempresa> listaTimpoEmpresaTodo();
-    public Tipoempresa tipoEmpId(int id);
+    public void insertTipoUserresa(Tipousuario to);
+    public List<Tipousuario> listaTipoUserTodo();
+    public Tipousuario tipoUserId(int id);
 }

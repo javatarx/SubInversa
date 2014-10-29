@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package subinversa.dao;
-
-import subinversa.modelo.Tipoempresa;
-import syscenterlife.dmp.core.data.IDataAccess;
+import subinversa.modelo.Tipousuario;
+import syscenterlife.dmp.core.data.DataAccess;
 
 /**
  *
  * @author pacifi
  */
-public interface TipoEmpDaoInterface extends IDataAccess<Tipoempresa> {
+public class TipoUserDaoImpl extends DataAccess<Tipousuario> implements TipoUserDaoInterface{
+    
     
 }

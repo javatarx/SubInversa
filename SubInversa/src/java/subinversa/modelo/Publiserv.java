@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package subinversa.modelo;
 
 import java.io.Serializable;
@@ -68,14 +69,14 @@ public class Publiserv implements Serializable {
     @Basic(optional = false)
     @Column(name = "entrega")
     private String entrega;
-    @JoinColumn(name = "iddest", referencedColumnName = "iddest")
-    @ManyToOne(optional = false)
-    private Destinos iddest;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idps")
+    private Collection<Preeleccion> preeleccionCollection;
     @JoinColumn(name = "idCli", referencedColumnName = "idCli")
     @ManyToOne(optional = false)
     private Clientes idCli;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idps")
-    private Collection<Preeleccion> preeleccionCollection;
+    @JoinColumn(name = "iddest", referencedColumnName = "iddest")
+    @ManyToOne(optional = false)
+    private Destinos iddest;
 
     public Publiserv() {
     }
@@ -177,12 +178,12 @@ public class Publiserv implements Serializable {
         this.entrega = entrega;
     }
 
-    public Destinos getIddest() {
-        return iddest;
+    public Collection<Preeleccion> getPreeleccionCollection() {
+        return preeleccionCollection;
     }
 
-    public void setIddest(Destinos iddest) {
-        this.iddest = iddest;
+    public void setPreeleccionCollection(Collection<Preeleccion> preeleccionCollection) {
+        this.preeleccionCollection = preeleccionCollection;
     }
 
     public Clientes getIdCli() {
@@ -193,12 +194,12 @@ public class Publiserv implements Serializable {
         this.idCli = idCli;
     }
 
-    public Collection<Preeleccion> getPreeleccionCollection() {
-        return preeleccionCollection;
+    public Destinos getIddest() {
+        return iddest;
     }
 
-    public void setPreeleccionCollection(Collection<Preeleccion> preeleccionCollection) {
-        this.preeleccionCollection = preeleccionCollection;
+    public void setIddest(Destinos iddest) {
+        this.iddest = iddest;
     }
 
     @Override

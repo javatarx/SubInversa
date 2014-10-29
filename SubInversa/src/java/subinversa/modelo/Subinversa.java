@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package subinversa.modelo;
 
 import java.io.Serializable;
@@ -50,7 +51,7 @@ public class Subinversa implements Serializable {
     private double ronda4;
     @Basic(optional = false)
     @Column(name = "puntaje")
-    private double puntaje;
+    private int puntaje;
     @JoinColumn(name = "idpre", referencedColumnName = "idpre")
     @ManyToOne(optional = false)
     private Preeleccion idpre;
@@ -62,7 +63,7 @@ public class Subinversa implements Serializable {
         this.idsub = idsub;
     }
 
-    public Subinversa(Integer idsub, double propuesta, double ronda1, double ronda2, double ronda3, double ronda4, double puntaje) {
+    public Subinversa(Integer idsub, double propuesta, double ronda1, double ronda2, double ronda3, double ronda4, int puntaje) {
         this.idsub = idsub;
         this.propuesta = propuesta;
         this.ronda1 = ronda1;
@@ -120,11 +121,11 @@ public class Subinversa implements Serializable {
         this.ronda4 = ronda4;
     }
 
-    public double getPuntaje() {
+    public int getPuntaje() {
         return puntaje;
     }
 
-    public void setPuntaje(double puntaje) {
+    public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
 

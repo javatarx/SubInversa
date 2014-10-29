@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package subinversa.modelo;
 
 import java.io.Serializable;
@@ -24,16 +25,16 @@ import javax.persistence.Table;
  * @author pacifi
  */
 @Entity
-@Table(name = "tipoempresa")
+@Table(name = "tipousuario")
 @NamedQueries({
-    @NamedQuery(name = "Tipoempresa.findAll", query = "SELECT t FROM Tipoempresa t")})
-public class Tipoempresa implements Serializable {
+    @NamedQuery(name = "Tipousuario.findAll", query = "SELECT t FROM Tipousuario t")})
+public class Tipousuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idtipemp")
-    private Integer idtipemp;
+    @Column(name = "idtipuser")
+    private Integer idtipuser;
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
@@ -43,29 +44,29 @@ public class Tipoempresa implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipemp")
-    private Collection<Clientes> clientesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipuser")
+    private Collection<Usuario> usuarioCollection;
 
-    public Tipoempresa() {
+    public Tipousuario() {
     }
 
-    public Tipoempresa(Integer idtipemp) {
-        this.idtipemp = idtipemp;
+    public Tipousuario(Integer idtipuser) {
+        this.idtipuser = idtipuser;
     }
 
-    public Tipoempresa(Integer idtipemp, String nombre, String descripcion, String estado) {
-        this.idtipemp = idtipemp;
+    public Tipousuario(Integer idtipuser, String nombre, String descripcion, String estado) {
+        this.idtipuser = idtipuser;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
     }
 
-    public Integer getIdtipemp() {
-        return idtipemp;
+    public Integer getIdtipuser() {
+        return idtipuser;
     }
 
-    public void setIdtipemp(Integer idtipemp) {
-        this.idtipemp = idtipemp;
+    public void setIdtipuser(Integer idtipuser) {
+        this.idtipuser = idtipuser;
     }
 
     public String getNombre() {
@@ -92,29 +93,29 @@ public class Tipoempresa implements Serializable {
         this.estado = estado;
     }
 
-    public Collection<Clientes> getClientesCollection() {
-        return clientesCollection;
+    public Collection<Usuario> getUsuarioCollection() {
+        return usuarioCollection;
     }
 
-    public void setClientesCollection(Collection<Clientes> clientesCollection) {
-        this.clientesCollection = clientesCollection;
+    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
+        this.usuarioCollection = usuarioCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idtipemp != null ? idtipemp.hashCode() : 0);
+        hash += (idtipuser != null ? idtipuser.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tipoempresa)) {
+        if (!(object instanceof Tipousuario)) {
             return false;
         }
-        Tipoempresa other = (Tipoempresa) object;
-        if ((this.idtipemp == null && other.idtipemp != null) || (this.idtipemp != null && !this.idtipemp.equals(other.idtipemp))) {
+        Tipousuario other = (Tipousuario) object;
+        if ((this.idtipuser == null && other.idtipuser != null) || (this.idtipuser != null && !this.idtipuser.equals(other.idtipuser))) {
             return false;
         }
         return true;
@@ -122,7 +123,7 @@ public class Tipoempresa implements Serializable {
 
     @Override
     public String toString() {
-        return "subinversa.modelo.Tipoempresa[ idtipemp=" + idtipemp + " ]";
+        return "subinversa.modelo.Tipousuario[ idtipuser=" + idtipuser + " ]";
     }
     
 }
