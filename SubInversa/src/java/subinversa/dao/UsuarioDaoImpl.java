@@ -21,7 +21,7 @@ public class UsuarioDaoImpl extends DataAccess<Usuario> implements UsuarioDaoInt
     public Usuario validarUsuarioExiste(String usuario) {
         Session session = getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        Usuario lista = (Usuario) session.createQuery("SELECT u FROM Usuario u where u-user=? ")
+        Usuario lista = (Usuario) session.createQuery("SELECT u FROM Usuario u where u.user=? ")
                 .setString(0, usuario)
                 .uniqueResult();
         t.commit();
@@ -32,7 +32,7 @@ public class UsuarioDaoImpl extends DataAccess<Usuario> implements UsuarioDaoInt
     public Usuario validarUsuarioExiste(String usuario, String pass) {
         Session session = getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        Usuario lista = (Usuario) session.createQuery("SELECT u FROM Usuario u where u.user=? and p.pass=?")
+        Usuario lista = (Usuario) session.createQuery("SELECT u FROM Usuario u where u.user=? and u.pass=?")
                 .setString(0, usuario)
                 .setString(1, pass)
                 .uniqueResult();

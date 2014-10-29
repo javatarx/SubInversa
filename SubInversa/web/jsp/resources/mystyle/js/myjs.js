@@ -21,7 +21,7 @@ function validaxion(){
 
         $.ajax({
                 type:'POST',
-		url: '../../../../UsuarioControl',		
+		url: '../../UsuarioControl',		
 		data: 'username=' + encodeURIComponent($('#usuario').val()) + '&password=' + encodeURIComponent($('#clave').val())+'&opc='+encodeURIComponent($('#opc').val()),
 		success: function(data){  
                     //alert(data);

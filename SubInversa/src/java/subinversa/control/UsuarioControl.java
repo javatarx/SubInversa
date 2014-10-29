@@ -41,7 +41,6 @@ public class UsuarioControl extends HttpServlet {
         String username = request.getParameter("username") == null ? "" : request.getParameter("username");
         String password = request.getParameter("password") == null ? "" : request.getParameter("password");
         String result;
-
         switch (opc) {
             case 1: {
                 System.out.println("listando user");
@@ -74,9 +73,10 @@ public class UsuarioControl extends HttpServlet {
 
                         usu = usuarioServ.validarUsuarioExiste(username, password);
                         if (usu != null && usu.getUser().equals(username) && usu.getEstado().equals("1")) {
-                            request.getSession().setAttribute("XDmpUsuario", usu.getUser());
-                            request.getSession().setAttribute("XDmpClav", usu.getPass());
-                            result = "5|Exito|" + "redirect.jsp";
+                            request.getSession().setAttribute("PacifiUser", usu.getUser());
+                            request.getSession().setAttribute("PacifiClave", usu.getPass());
+                            System.err.println("Entro a logear son exito");
+                            result = "5|Exito|" + "../frame/IndexFrameAdmin.jsp";
                         } else {
                             result = "2|Usted no tiene acceso a nuestro Sistema,Comuniquese con el Administrador|" + "index.jsp";
                         }
