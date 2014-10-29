@@ -73,8 +73,8 @@ public class UsuarioControl extends HttpServlet {
 
                         usu = usuarioServ.validarUsuarioExiste(username, password);
                         if (usu != null && usu.getUser().equals(username) && usu.getEstado().equals("1")) {
-                            request.getSession().setAttribute("PacifiUser", usu.getUser());
-                            request.getSession().setAttribute("PacifiClave", usu.getPass());
+                            request.getSession().setAttribute("_sessionUser", usu);
+
                             System.err.println("Entro a logear son exito");
                             result = "5|Exito|" + "../frame/IndexFrameAdmin.jsp";
                         } else {
