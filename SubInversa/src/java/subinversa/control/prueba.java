@@ -5,6 +5,8 @@
  */
 package subinversa.control;
 
+import subinversa.servicio.PreeleccionServImpl;
+import subinversa.servicio.PreeleccionServInterface;
 import subinversa.servicio.UsuarioServImpl;
 import subinversa.servicio.UsuarioServInterface;
 
@@ -15,12 +17,12 @@ import subinversa.servicio.UsuarioServInterface;
 public class prueba {
 
     public static void main(String arg[]) {
-        
-        UsuarioServInterface serv = new UsuarioServImpl();
+
+        PreeleccionServInterface serv = new PreeleccionServImpl();
         try {
-            System.err.println(serv.validarUsuarioExiste("pacifi","123").getUser());
+            System.out.println("Lista serv"+serv.listaPreeleccionCliePub(2, 1).size());
         } catch (Exception e) {
-            System.err.println("No exiiste ++"+ e.getMessage());
+            System.err.println("No exiiste ++" + e.getMessage());
         }
     }
 }

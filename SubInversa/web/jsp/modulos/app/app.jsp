@@ -4,6 +4,10 @@
     Author     : pacifi
 --%>
 
+<%@page import="subinversa.servicio.PreeleccionServImpl"%>
+<%@page import="subinversa.servicio.PreeleccionServInterface"%>
+<%@page import="subinversa.modelo.Clientes"%>
+<%@page import="subinversa.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
 <%@page import="subinversa.modelo.Destinos" %>
@@ -30,8 +34,12 @@
     <body>
         <%
             Publiserv toPublish = (Publiserv) request.getSession().getAttribute("_toPublish");
-            List<Subinversa> lista = (List<Subinversa>) request.getSession().getAttribute("_listaSubInv");
+            Usuario toUser = (Usuario) request.getSession().getAttribute("_sessionUser");
 
+            Clientes toCli = (Clientes) request.getSession().getAttribute("_sessionCliente");
+            PreeleccionServInterface serv = new PreeleccionServImpl();
+
+            int prueba = serv.listaPreeleccionCliePub(toCli.getIdCli(), toPublish.getIdps()).size();
         %>
         <table border="1">
             <tr>
@@ -55,9 +63,21 @@
                 <td><%=toPublish.getFechaFinal()%></td>
             </tr>
             <tr>
-                <td> Nueva Puja <input type="text" /> <input type="button" onclick="agregarSub()" /></td>
+                <td>
+                    <%
+                        if (prueba == 0) {
+                    %> 
+                    <button onclick="participar()" id="participar"> Participar</button>
+                    <%
+                    } else {
+                    %>
+                    <p>Parrafo else</p>
+
+                    <% }%>
+                    <input type="button" value="Pujar" onclick="agregarSub()" /></td>
             </tr>
         </table>
+
 
         <div id="reporteSubInver" style="display: none" >
 

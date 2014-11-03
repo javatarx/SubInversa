@@ -31,6 +31,10 @@ public class ClientesServImpl implements ClientesServInterface {
     public void insertarCliente(Clientes to) {
         clienteDaoInterface.save(to);
     }
-    
+
+    @Override
+    public Clientes retarnaClienteUser(int idUsuario) {
+        return clienteDaoInterface.retarnaClienteUser(idUsuario);
+    }
 
 }

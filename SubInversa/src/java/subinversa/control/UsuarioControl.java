@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import subinversa.modelo.Usuario;
+import subinversa.servicio.ClientesServImpl;
+import subinversa.servicio.ClientesServInterface;
 import subinversa.servicio.UsuarioServImpl;
 import subinversa.servicio.UsuarioServInterface;
 
@@ -41,6 +43,7 @@ public class UsuarioControl extends HttpServlet {
         String username = request.getParameter("username") == null ? "" : request.getParameter("username");
         String password = request.getParameter("password") == null ? "" : request.getParameter("password");
         String result;
+        ClientesServInterface servClient;
         switch (opc) {
             case 1: {
                 System.out.println("listando user");
@@ -56,44 +59,45 @@ public class UsuarioControl extends HttpServlet {
                 to.setPass(request.getParameter("pass"));
                 to.setEstado(request.getParameter("estado"));
                 usuarioServ.insertUsuario(to);
-
+                
                 usuarioServ = new UsuarioServImpl();
                 request.getSession().setAttribute("_listaUsuario", usuarioServ.listaUsuarioTodo());
                 response.sendRedirect("jsp/modulos/user/listaUser.jsp");
-
+                
                 break;
             }
             case 6: {
                 usuarioServ = new UsuarioServImpl();
                 Usuario usu = null;
-
+                
                 if (usuarioServ.validarUsuarioExisteList(username).size() > 0) {
                     usu = usuarioServ.validarUsuarioExiste(username);
                     if (usu != null && usu.getUser().equals(username)) {
-
+                        
                         usu = usuarioServ.validarUsuarioExiste(username, password);
                         if (usu != null && usu.getUser().equals(username) && usu.getEstado().equals("1")) {
                             request.getSession().setAttribute("_sessionUser", usu);
-
+                            servClient = new ClientesServImpl();
+                            request.getSession().setAttribute("_sessionCliente", servClient.retarnaClienteUser(usu.getIdus()));
                             System.err.println("Entro a logear son exito");
                             result = "5|Exito|" + "../frame/IndexFrameAdmin.jsp";
                         } else {
                             result = "2|Usted no tiene acceso a nuestro Sistema,Comuniquese con el Administrador|" + "index.jsp";
                         }
                         out.println(result);
-
+                        
                     } else {
                         request.getSession().setAttribute("Session", null);
                         result = "2|Usted no tiene acceso a nuestro Sistema,Comuniquese con el Administrador|";
                         out.println(result);
                     }
-
+                    
                 } else {
                     request.getSession().setAttribute("Session", null);
                     result = "1|Usted. No esta  Registrado en nuestra base de datos, comuniquese con el Administrador!.|";
                     out.println(result);
                 }
-
+                
                 break;
             }
         }

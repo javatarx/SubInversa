@@ -12,9 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import subinversa.modelo.Clientes;
+import subinversa.modelo.Preeleccion;
 import subinversa.modelo.Publiserv;
-import subinversa.servicio.PubliServImpl;
-import subinversa.servicio.PubliServInterface;
+import subinversa.servicio.PreeleccionServImpl;
+import subinversa.servicio.PreeleccionServInterface;
 import subinversa.servicio.SubInversaServImpl;
 import subinversa.servicio.SubInversaServInterface;
 
@@ -22,8 +24,8 @@ import subinversa.servicio.SubInversaServInterface;
  *
  * @author pacifi
  */
-@WebServlet(name = "PublicidadControl", urlPatterns = {"/PublicidadControl"})
-public class PublicidadControl extends HttpServlet {
+@WebServlet(name = "PreeleccionControl", urlPatterns = {"/PreeleccionControl"})
+public class PreeleccionControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,36 +41,38 @@ public class PublicidadControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         int opc = Integer.parseInt(request.getParameter("opc"));
-        PubliServInterface publiServ;
-        SubInversaServInterface subInvServ;
-        System.out.println("llega");
-
+        PreeleccionServInterface servPre;
         switch (opc) {
             case 0: {
-                publiServ = new PubliServImpl();
-                int idPublish = Integer.parseInt(request.getParameter("id_publish"));
-                request.getSession().setAttribute("_toPublish", publiServ.buscaIdPublicidad(idPublish));
-                
-                response.sendRedirect("jsp/modulos/app/app.jsp");
                 break;
             }
             case 1: {
-                publiServ = new PubliServImpl();
-                request.getSession().setAttribute("_listaServi", publiServ.ListaPubliTodo());
-                response.sendRedirect("jsp/modulos/servicios/listaServicio.jsp");
+
                 break;
             }
             case 2: {
-                publiServ = new PubliServImpl();
-                Publiserv to = new Publiserv();
-                to.setSerie(Integer.parseInt(request.getParameter("serie")));
-                to.setNameOferta(request.getParameter("numOferta"));
-                to.setDescripcion(request.getParameter("descripcion"));
-                to.setValoReferencial(Long.parseLong(request.getParameter("valoReferencial")));
-                //to.setFechaInicial(request.getParameter("fecInicial"));
+                Clientes toCli = null;
+                Publiserv toPubl = null;
 
+                toCli = (Clientes) request.getSession().getAttribute("_sessionCliente");
+                toPubl = (Publiserv) request.getSession().getAttribute("_toPublish");
+                Preeleccion toPre = new Preeleccion();
+                toPre.setIdCli(toCli);
+                toPre.setIdps(toPubl);
+                toPre.setTipoAceptacion("1");
+                try {
+                    servPre = new PreeleccionServImpl();
+                    servPre.insertPreeleccion(toPre);
+                    SubInversaServInterface subInvServ = new SubInversaServImpl();
+                    request.getSession().setAttribute("_listaSubInv", subInvServ.buscaSubInvIdPublish(toPubl.getIdps()));
+                } catch (Exception e) {
+                    System.err.println("Error al guardar" + e.getMessage());
+                }
+                response.sendRedirect("jsp/modulos/app/reporteSubInver.jsp");
+                break;
             }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

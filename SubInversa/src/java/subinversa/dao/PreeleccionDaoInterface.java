@@ -5,14 +5,15 @@
  */
 package subinversa.dao;
 
-import subinversa.modelo.Clientes;
+import java.util.List;
+import subinversa.modelo.Preeleccion;
 import syscenterlife.dmp.core.data.IDataAccess;
 
 /**
  *
  * @author pacifi
  */
-public interface ClientesDaoInterface extends IDataAccess<Clientes> {
+public interface PreeleccionDaoInterface extends IDataAccess<Preeleccion> {
 
-    public Clientes retarnaClienteUser(int idUsuario);
+    public List<Preeleccion> listaPreeleccionCliePub(int idCliente, int idPubserv);
 }
