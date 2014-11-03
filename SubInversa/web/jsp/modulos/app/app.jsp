@@ -24,7 +24,8 @@
         <link href="../../resources/Progressus/sb-admin/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="../../resources/popup/demo.css">
-
+        <script src="../../resources/mystyle/js/jquery-1.9.1.js"></script>
+        <script src="../../resources/mystyle/js/app.js"></script>
     </head>
     <body>
         <%
@@ -54,41 +55,13 @@
                 <td><%=toPublish.getFechaFinal()%></td>
             </tr>
             <tr>
-                <td> Nueva Puja <input type="text" /> <input type="button"/></td>
+                <td> Nueva Puja <input type="text" /> <input type="button" onclick="agregarSub()" /></td>
             </tr>
         </table>
 
-        <table> 
-            <tr><th>
-                    #
-                </th>
-                <th>
-                    transportista
-                </th>
-                <th>
-                    Prouesta
-                </th>
-                <th>Ronda 1</th>
-                <th>Ronda 2</th>
-                <th>Ronda 3</th>
-                <th>Ronda 4</th>
-            </tr>
-            <%    if (lista != null) {
-                    int i = 0;
-                    for (Subinversa to : lista) {
-            %>
-            <tr>
-                <td><%=i++%></td>
-                <td><%=to.getIdpre().getIdCli().getRazonsocial()%></td>
-                <td><%=to.getPropuesta()%></td>
-                <td><%=to.getRonda1()%></td>
-                <td><%=to.getRonda2()%></td>
-                <td><%=to.getRonda3()%></td>
-                <td><%=to.getRonda4()%></td>
-            </tr>
-            <%}
-                }%>
-        </table>
+        <div id="reporteSubInver" style="display: none" >
+
+        </div>
 
     </body>
 </html>

@@ -58,9 +58,6 @@ public class Clientes implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
-    @Column(name = "pass")
-    private String pass;
     @JoinColumn(name = "idus", referencedColumnName = "idus")
     @ManyToOne(optional = false)
     private Usuario idus;
@@ -81,7 +78,7 @@ public class Clientes implements Serializable {
         this.idCli = idCli;
     }
 
-    public Clientes(Integer idCli, String ruc, String razonsocial, String direccion, String email, long telefono, long fax, String estado, String pass) {
+    public Clientes(Integer idCli, String ruc, String razonsocial, String direccion, String email, long telefono, long fax, String estado) {
         this.idCli = idCli;
         this.ruc = ruc;
         this.razonsocial = razonsocial;
@@ -90,7 +87,6 @@ public class Clientes implements Serializable {
         this.telefono = telefono;
         this.fax = fax;
         this.estado = estado;
-        this.pass = pass;
     }
 
     public Integer getIdCli() {
@@ -155,14 +151,6 @@ public class Clientes implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
     }
 
     public Usuario getIdus() {

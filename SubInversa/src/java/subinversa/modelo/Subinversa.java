@@ -35,20 +35,8 @@ public class Subinversa implements Serializable {
     @Column(name = "idsub")
     private Integer idsub;
     @Basic(optional = false)
-    @Column(name = "propuesta")
-    private double propuesta;
-    @Basic(optional = false)
-    @Column(name = "ronda1")
-    private double ronda1;
-    @Basic(optional = false)
-    @Column(name = "ronda2")
-    private double ronda2;
-    @Basic(optional = false)
-    @Column(name = "ronda3")
-    private double ronda3;
-    @Basic(optional = false)
-    @Column(name = "ronda4")
-    private double ronda4;
+    @Column(name = "puja")
+    private double puja;
     @Basic(optional = false)
     @Column(name = "puntaje")
     private int puntaje;
@@ -63,13 +51,9 @@ public class Subinversa implements Serializable {
         this.idsub = idsub;
     }
 
-    public Subinversa(Integer idsub, double propuesta, double ronda1, double ronda2, double ronda3, double ronda4, int puntaje) {
+    public Subinversa(Integer idsub, double puja, int puntaje) {
         this.idsub = idsub;
-        this.propuesta = propuesta;
-        this.ronda1 = ronda1;
-        this.ronda2 = ronda2;
-        this.ronda3 = ronda3;
-        this.ronda4 = ronda4;
+        this.puja = puja;
         this.puntaje = puntaje;
     }
 
@@ -81,44 +65,12 @@ public class Subinversa implements Serializable {
         this.idsub = idsub;
     }
 
-    public double getPropuesta() {
-        return propuesta;
+    public double getPuja() {
+        return puja;
     }
 
-    public void setPropuesta(double propuesta) {
-        this.propuesta = propuesta;
-    }
-
-    public double getRonda1() {
-        return ronda1;
-    }
-
-    public void setRonda1(double ronda1) {
-        this.ronda1 = ronda1;
-    }
-
-    public double getRonda2() {
-        return ronda2;
-    }
-
-    public void setRonda2(double ronda2) {
-        this.ronda2 = ronda2;
-    }
-
-    public double getRonda3() {
-        return ronda3;
-    }
-
-    public void setRonda3(double ronda3) {
-        this.ronda3 = ronda3;
-    }
-
-    public double getRonda4() {
-        return ronda4;
-    }
-
-    public void setRonda4(double ronda4) {
-        this.ronda4 = ronda4;
+    public void setPuja(double puja) {
+        this.puja = puja;
     }
 
     public int getPuntaje() {

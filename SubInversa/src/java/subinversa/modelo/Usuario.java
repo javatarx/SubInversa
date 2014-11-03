@@ -51,8 +51,6 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "idtipuser", referencedColumnName = "idtipuser")
     @ManyToOne(optional = false)
     private Tipousuario idtipuser;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idus")
-    private Collection<Accesos> accesosCollection;
 
     public Usuario() {
     }
@@ -114,14 +112,6 @@ public class Usuario implements Serializable {
 
     public void setIdtipuser(Tipousuario idtipuser) {
         this.idtipuser = idtipuser;
-    }
-
-    public Collection<Accesos> getAccesosCollection() {
-        return accesosCollection;
-    }
-
-    public void setAccesosCollection(Collection<Accesos> accesosCollection) {
-        this.accesosCollection = accesosCollection;
     }
 
     @Override

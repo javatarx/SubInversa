@@ -37,12 +37,12 @@ public class Accesos implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @JoinColumn(name = "idus", referencedColumnName = "idus")
-    @ManyToOne(optional = false)
-    private Usuario idus;
     @JoinColumn(name = "idurl", referencedColumnName = "idurl")
     @ManyToOne(optional = false)
     private Url idurl;
+    @JoinColumn(name = "idtipuser", referencedColumnName = "idtipuser")
+    @ManyToOne(optional = false)
+    private Tipousuario idtipuser;
 
     public Accesos() {
     }
@@ -81,20 +81,20 @@ public class Accesos implements Serializable {
         this.estado = estado;
     }
 
-    public Usuario getIdus() {
-        return idus;
-    }
-
-    public void setIdus(Usuario idus) {
-        this.idus = idus;
-    }
-
     public Url getIdurl() {
         return idurl;
     }
 
     public void setIdurl(Url idurl) {
         this.idurl = idurl;
+    }
+
+    public Tipousuario getIdtipuser() {
+        return idtipuser;
+    }
+
+    public void setIdtipuser(Tipousuario idtipuser) {
+        this.idtipuser = idtipuser;
     }
 
     @Override

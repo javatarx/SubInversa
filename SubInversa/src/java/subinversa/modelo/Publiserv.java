@@ -71,12 +71,12 @@ public class Publiserv implements Serializable {
     private String entrega;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idps")
     private Collection<Preeleccion> preeleccionCollection;
-    @JoinColumn(name = "idCli", referencedColumnName = "idCli")
-    @ManyToOne(optional = false)
-    private Clientes idCli;
     @JoinColumn(name = "iddest", referencedColumnName = "iddest")
     @ManyToOne(optional = false)
     private Destinos iddest;
+    @JoinColumn(name = "idCli", referencedColumnName = "idCli")
+    @ManyToOne(optional = false)
+    private Clientes idCli;
 
     public Publiserv() {
     }
@@ -186,20 +186,20 @@ public class Publiserv implements Serializable {
         this.preeleccionCollection = preeleccionCollection;
     }
 
-    public Clientes getIdCli() {
-        return idCli;
-    }
-
-    public void setIdCli(Clientes idCli) {
-        this.idCli = idCli;
-    }
-
     public Destinos getIddest() {
         return iddest;
     }
 
     public void setIddest(Destinos iddest) {
         this.iddest = iddest;
+    }
+
+    public Clientes getIdCli() {
+        return idCli;
+    }
+
+    public void setIdCli(Clientes idCli) {
+        this.idCli = idCli;
     }
 
     @Override

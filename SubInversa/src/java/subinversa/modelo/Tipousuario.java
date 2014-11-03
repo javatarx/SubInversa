@@ -46,6 +46,8 @@ public class Tipousuario implements Serializable {
     private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipuser")
     private Collection<Usuario> usuarioCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtipuser")
+    private Collection<Accesos> accesosCollection;
 
     public Tipousuario() {
     }
@@ -99,6 +101,14 @@ public class Tipousuario implements Serializable {
 
     public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
         this.usuarioCollection = usuarioCollection;
+    }
+
+    public Collection<Accesos> getAccesosCollection() {
+        return accesosCollection;
+    }
+
+    public void setAccesosCollection(Collection<Accesos> accesosCollection) {
+        this.accesosCollection = accesosCollection;
     }
 
     @Override

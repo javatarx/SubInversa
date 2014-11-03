@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import subinversa.modelo.Subinversa;
 import subinversa.servicio.SubInversaServImpl;
 import subinversa.servicio.SubInversaServInterface;
 
@@ -42,6 +43,17 @@ public class SubInversaControl extends HttpServlet {
 
         switch (opc) {
             case 0: {
+                System.out.println("99000");
+                Subinversa to = new Subinversa();
+                to.setIdpre(null);
+                try {
+                } catch (Exception e) {
+                    System.out.println("error al insertar los datos" + e.getMessage());
+                }
+                //calculando el total
+                
+                response.sendRedirect("jsp/modulos/app/reporteSubInver.jsp");
+                //    response.sendRedirect(response.encodeURL("some.jsp", "target=someframe"));
 
                 break;
             }
