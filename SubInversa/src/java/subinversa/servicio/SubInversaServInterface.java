@@ -23,5 +23,6 @@ public interface SubInversaServInterface {
     public void eliminaSubInversa(String id);
 
     public List<Subinversa> buscaSubInvIdPublish(int idPublish);
+    public List<Subinversa> buscaSubInvIdPreele(int idPreele);
 
 }

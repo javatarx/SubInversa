@@ -46,5 +46,10 @@ public class SubInversaServImpl implements SubInversaServInterface {
     public List<Subinversa> buscaSubInvIdPublish(int idPublish) {
         return dao.buscaSubInvIdPublish(idPublish);
     }
+    
+    @Override
+    public List<Subinversa> buscaSubInvIdPreele(int idPreele){
+        return dao.buscaSubInvIdPreele(idPreele);
+    }
 
 }

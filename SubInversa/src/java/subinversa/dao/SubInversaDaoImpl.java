@@ -28,4 +28,14 @@ public class SubInversaDaoImpl extends DataAccess<Subinversa> implements SubInve
         t.commit();
         return lista;
     }
+    
+    public List<Subinversa> buscaSubInvIdPreele(int idPreele){
+        Session session = getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        List<Subinversa> lista = session.createQuery("SELECT s FROM Subinversa s where s.idpre=?")
+                .setInteger(0, idPreele)
+                .list();
+        t.commit();
+        return lista;
+    }
 }

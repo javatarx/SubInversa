@@ -39,8 +39,10 @@
             Clientes toCli = (Clientes) request.getSession().getAttribute("_sessionCliente");
             PreeleccionServInterface serv = new PreeleccionServImpl();
 
-            int prueba = serv.listaPreeleccionCliePub(toCli.getIdCli(), toPublish.getIdps()).size();
+            Preeleccion prueba = serv.listaPreeleccionCliePub(toCli.getIdCli(), toPublish.getIdps());
+            request.getSession().setAttribute("_preeleccion", prueba);
         %>
+        
         <table border="1">
             <tr>
                 <th>Serie</th>
@@ -65,18 +67,18 @@
             <tr>
                 <td>
                     <%
-                        if (prueba == 0) {
+                        if (prueba == null) {
                     %> 
                     <button onclick="participar()" id="participar"> Participar</button>
                     <%
                     } else {
                     %>
-                    <p>Parrafo else</p>
+                    <p>Ya esta Participando <button onclick="verSubInver()" > Ver</button></p>
 
                     <% }%>
-                    <input type="button" value="Pujar" onclick="agregarSub()" /></td>
             </tr>
         </table>
+
 
 
         <div id="reporteSubInver" style="display: none" >

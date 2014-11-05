@@ -5,13 +5,22 @@
 --%>
 
 
+<%@page import="subinversa.servicio.SubInversaServImpl"%>
+<%@page import="subinversa.servicio.SubInversaServInterface"%>
+<%@page import="subinversa.modelo.Preeleccion"%>
 <%@page import="java.util.List"%>
 <%@page import="subinversa.modelo.Subinversa"%>
 
 <%
-    List<Subinversa> lista = (List<Subinversa>) request.getSession().getAttribute("");
-    
+    List<Preeleccion> lista = (List<Preeleccion>) request.getSession().getAttribute("_listaPreeleccion");
+    SubInversaServInterface servSubInver = new SubInversaServImpl();
+    List<Subinversa> listaSub;
 %>
+d
+<div>
+    <input type="text" placeholder="Ingrese Puja" id="pujaSub"/>
+    <button onclick="agregarSub()"></button>
+</div>
 
 <div>
     <table> 
@@ -31,16 +40,20 @@
         </tr>
         <%    if (lista != null) {
                 int i = 0;
-                for (Subinversa to : lista) {
+                for (Preeleccion to : lista) {
+                    
+
         %>
         <tr>
-            <td><%=i++%></td>
-            <td><%=to.getIdpre().getIdCli().getRazonsocial()%></td>
-            <td><%=to.getPuja()%></td>
-
+            <td><%=to.getIdCli().getRazonsocial()%></td>
+            <%
+                listaSub = servSubInver.buscaSubInvIdPreele(to.getIdpre());
+                for (Subinversa toSub : listaSub) {%>
+            <td><%=toSub.getPuja()%></td>
+            <%} %>
         </tr>
         <%}
-        }%>
+            }%>
     </table>
 </div>
 

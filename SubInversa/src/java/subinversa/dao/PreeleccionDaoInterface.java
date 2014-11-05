@@ -15,5 +15,6 @@ import syscenterlife.dmp.core.data.IDataAccess;
  */
 public interface PreeleccionDaoInterface extends IDataAccess<Preeleccion> {
 
-    public List<Preeleccion> listaPreeleccionCliePub(int idCliente, int idPubserv);
+    public Preeleccion listaPreeleccionCliePub(int idCliente, int idPubserv);
+    public List<Preeleccion> listaPreeleccionPub(int idPubServ);
 }

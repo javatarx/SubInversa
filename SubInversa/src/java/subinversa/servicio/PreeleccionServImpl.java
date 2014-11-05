@@ -28,10 +28,15 @@ public class PreeleccionServImpl implements PreeleccionServInterface {
         dao.save(to);
 
     }
-    
+
     @Override
-    public List<Preeleccion> listaPreeleccionCliePub(int idCliente, int idPubserv){
+    public Preeleccion listaPreeleccionCliePub(int idCliente, int idPubserv) {
         return dao.listaPreeleccionCliePub(idCliente, idPubserv);
+    }
+
+    @Override
+    public List<Preeleccion> listaPreeleccionPub(int idPubServ) {
+        return dao.listaPreeleccionPub(idPubServ);
     }
 
 }

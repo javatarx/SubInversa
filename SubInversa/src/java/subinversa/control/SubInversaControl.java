@@ -12,7 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import subinversa.modelo.Preeleccion;
+import subinversa.modelo.Publiserv;
 import subinversa.modelo.Subinversa;
+import subinversa.servicio.PreeleccionServImpl;
+import subinversa.servicio.PreeleccionServInterface;
 import subinversa.servicio.SubInversaServImpl;
 import subinversa.servicio.SubInversaServInterface;
 
@@ -40,28 +44,41 @@ public class SubInversaControl extends HttpServlet {
         int opc = Integer.parseInt(request.getParameter("opc"));
         System.out.println("Subasta Inversa");
         SubInversaServInterface servSubInversa;
+        PreeleccionServInterface servPreele;
 
         switch (opc) {
             case 0: {
-                System.out.println("99000");
-                Subinversa to = new Subinversa();
-                to.setIdpre(null);
-                try {
-                } catch (Exception e) {
-                    System.out.println("error al insertar los datos" + e.getMessage());
-                }
-                //calculando el total
-                
-                response.sendRedirect("jsp/modulos/app/reporteSubInver.jsp");
-                //    response.sendRedirect(response.encodeURL("some.jsp", "target=someframe"));
+                //Ver Subasta Inversa 
 
+                Publiserv toPubl = (Publiserv) request.getSession().getAttribute("_toPublish");
+                servPreele = new PreeleccionServImpl();
+                request.getSession().setAttribute("_listaPreeleccion", servPreele.listaPreeleccionPub(toPubl.getIdps()));
+
+                response.sendRedirect("jsp/modulos/app/reporteSubInver.jsp");
                 break;
             }
+
             case 1: {
                 servSubInversa = new SubInversaServImpl();
                 request.getSession().setAttribute("_listaSubInversa", servSubInversa.listaSubInversaTodo());
                 response.sendRedirect("jsp/modulos/subinversa/subInversa.jsp");
                 break;
+            }
+            case 2: {
+                Preeleccion toPre = (Preeleccion) request.getSession().getAttribute("_preeleccion");
+                Subinversa toSub = new Subinversa();
+                toSub.setIdpre(toPre);
+                toSub.setPuja(Double.parseDouble(request.getParameter("pujaSub")));
+                toSub.setPuntaje(50);
+                try {
+                    servSubInversa = new SubInversaServImpl();
+                    servSubInversa.insertaSubInversa(toSub);
+                    servPreele = new PreeleccionServImpl();
+                    request.getSession().setAttribute("_listaPreeleccion", servPreele.listaPreeleccionPub(toPre.getIdps().getIdps()));
+
+                } catch (Exception e) {
+                }
+                response.sendRedirect("jsp/modulos/app/reporteSubInver.jsp");
             }
             case 10: {
 

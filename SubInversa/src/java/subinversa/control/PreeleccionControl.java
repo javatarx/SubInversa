@@ -47,13 +47,13 @@ public class PreeleccionControl extends HttpServlet {
                 break;
             }
             case 1: {
-
+                
                 break;
             }
             case 2: {
                 Clientes toCli = null;
                 Publiserv toPubl = null;
-
+                
                 toCli = (Clientes) request.getSession().getAttribute("_sessionCliente");
                 toPubl = (Publiserv) request.getSession().getAttribute("_toPublish");
                 Preeleccion toPre = new Preeleccion();
@@ -63,8 +63,8 @@ public class PreeleccionControl extends HttpServlet {
                 try {
                     servPre = new PreeleccionServImpl();
                     servPre.insertPreeleccion(toPre);
-                    SubInversaServInterface subInvServ = new SubInversaServImpl();
-                    request.getSession().setAttribute("_listaSubInv", subInvServ.buscaSubInvIdPublish(toPubl.getIdps()));
+                    servPre = new PreeleccionServImpl();
+                    request.getSession().setAttribute("_listaPreeleccion", servPre.listaPreeleccionPub(toPubl.getIdps()));
                 } catch (Exception e) {
                     System.err.println("Error al guardar" + e.getMessage());
                 }
@@ -72,7 +72,7 @@ public class PreeleccionControl extends HttpServlet {
                 break;
             }
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

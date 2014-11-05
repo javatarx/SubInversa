@@ -5,8 +5,11 @@
  */
 package subinversa.control;
 
+import subinversa.modelo.Subinversa;
 import subinversa.servicio.PreeleccionServImpl;
 import subinversa.servicio.PreeleccionServInterface;
+import subinversa.servicio.SubInversaServImpl;
+import subinversa.servicio.SubInversaServInterface;
 import subinversa.servicio.UsuarioServImpl;
 import subinversa.servicio.UsuarioServInterface;
 
@@ -18,9 +21,9 @@ public class prueba {
 
     public static void main(String arg[]) {
 
-        PreeleccionServInterface serv = new PreeleccionServImpl();
+        SubInversaServInterface serv = new SubInversaServImpl();
         try {
-            System.out.println("Lista serv"+serv.listaPreeleccionCliePub(2, 1).size());
+            System.out.println("Lista serv"+serv.buscaSubInvIdPublish(1));
         } catch (Exception e) {
             System.err.println("No exiiste ++" + e.getMessage());
         }

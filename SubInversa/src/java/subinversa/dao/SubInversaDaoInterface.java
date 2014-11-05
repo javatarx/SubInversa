@@ -14,5 +14,6 @@ import subinversa.modelo.Subinversa;
  */
 public interface SubInversaDaoInterface extends IDataAccess<Subinversa>{
     public List<Subinversa> buscaSubInvIdPublish(int idPublish);
+    public List<Subinversa> buscaSubInvIdPreele(int idPreele);
     
 }
